@@ -1,0 +1,57 @@
+<%= javascript_pack_tag 'application' %>
+<div class="container" style="padding-top: 200px;height:100%;padding-left: 25px;width:50%">
+  <div class="card" style="float:left;background-color:#f1f8ff">
+    <div class="container" style="padding-left: 25px;padding-top: 25px">
+      <%= form_with(model: image, local: true) do |form| %>
+        <% if image.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+            <ul>
+              <% image.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= form.label :title, "Enter the title:" %>
+          <%= form.text_field :title, class: "form-control" %>
+        </div>
+        <br>
+        <div class="field">
+          <%= form.label :body, "Description" %>
+          <%= form.text_area :body, :class => "form-control", :rows => 3 %>
+        </div>
+
+        <div class="field">
+          <%= form.label :drawing, "Select your image" %>
+          <%= form.file_field :drawing, multiple: false, direct_upload: true, class: "form-control" %>
+        </div>
+
+        <br>
+
+
+      
+        <div class="form-control; height:auto">
+          <%= form.label :album_id, "Select your Album" %>
+            <%= form.collection_radio_buttons(:album_id, @album, :id, :title) do |b| b.label(:"data-value" => b.value, class: " form-control btn btn-outline-info btn-sm") { b.radio_button + " " + b.text }
+          end
+          %>
+        <div class="actions" style="padding-left: 550px">
+          <br>
+          <%= form.submit "Upload" %>
+        </div>
+        <br>
+      <% end %>
+
+      
+
+    </div>
+  </div>
+</div>
+<div class="container" style="float:left">
+  <%= link_to 'Back', root_path %>
+</div>
+

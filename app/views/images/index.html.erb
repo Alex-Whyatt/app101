@@ -1,0 +1,27 @@
+  <div class="container" style="min-width: 80%;padding-top:200px;padding-left:75px;float:left;height:50%;margin: 0">
+    <h2 style="font-family:GT Walsheim;">
+      <%= @album.title %>
+    </h2>
+    <p style="margin: 0;float:right">
+     <%= link_to 'Back to Album', albums_path, class: "btn btn-outline-primary btn-sm" %>
+    </p>
+    <% (@album.images).each do |img| %>
+      <div class="card" style="border-color: white;width:auto;float:left;padding-left: 25px;padding-top:50px">
+        <% if img.drawing.attached? %>
+          <%= image_tag(img.drawing_f)%>
+        <% end %>
+        <%= link_to img.title, img, :style => "color: black;font-family:icofonts;font-size: 12px;text-align: center;border-color:white"%><% if current_user && current_user.admin? %>
+              <p><%= button_to 'Destroy', img, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger btn-sm" %>
+              <% end %></a>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="container" style="padding-top:75px;padding-left: 160px;float:left">
+    <% if current_user && current_user.admin? %>
+      <%= link_to "Upload new drawing", new_image_path(:album_id => @album.id), class: "btn btn-dark" %>
+    <% end %>
+  </div>
+
+</div>
+

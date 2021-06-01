@@ -1,0 +1,22 @@
+<div class="navbar" style="width:10%;float:left;"> 
+  <a class="nav-link active" style="color:grey;font-family:icofonts;"href="<%= info_index_path %>"> Home </h2>
+
+  <ul class="nav flex-column" style="padding-top: 200px">
+
+    <li class="nav-item">
+      <a class="nav-link active" style="color: black;font-family:GT Walsheim;"href="<%= info_index_path %>">info</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" style="color: black;font-family:GT Walsheim;"href="<%= albums_path %>">images</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" style="color: black;font-family:GT Walsheim;"href="<%= forests_path %>">forests</a>
+    </li>
+  </ul>
+</div>
+
+  <div class="container" style="min-width:100%;text-align:right">
+     <% if user_signed_in? %>
+      <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-outline-dark btn-sm" %>        
+    <% end %>
+  </div>
